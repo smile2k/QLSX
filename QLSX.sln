@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.MainWindow", "QLSX\QLSX.MainWindow.csproj", "{6631CE76-65C0-4573-BA6F-3A141710BBA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{982D320F-AA0C-44F4-9AF8-0314C532E64F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{13CFA777-407C-454B-B47B-AC68DF9F2A9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Based", "Based", "{5CEFCFCC-9F30-42CD-B8EE-459B9C326784}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.Services", "QLSX.Services\QLSX.Services.csproj", "{01CA98AD-B9DB-496C-883F-C606B356A2C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.Module.Main", "QLSX.Module.Main\QLSX.Module.Main.csproj", "{573DA298-7874-4CAC-80BB-6290FA2260FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6631CE76-65C0-4573-BA6F-3A141710BBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6631CE76-65C0-4573-BA6F-3A141710BBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6631CE76-65C0-4573-BA6F-3A141710BBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6631CE76-65C0-4573-BA6F-3A141710BBA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01CA98AD-B9DB-496C-883F-C606B356A2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01CA98AD-B9DB-496C-883F-C606B356A2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01CA98AD-B9DB-496C-883F-C606B356A2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01CA98AD-B9DB-496C-883F-C606B356A2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{573DA298-7874-4CAC-80BB-6290FA2260FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{573DA298-7874-4CAC-80BB-6290FA2260FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{573DA298-7874-4CAC-80BB-6290FA2260FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{573DA298-7874-4CAC-80BB-6290FA2260FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{01CA98AD-B9DB-496C-883F-C606B356A2C6} = {13CFA777-407C-454B-B47B-AC68DF9F2A9A}
+		{573DA298-7874-4CAC-80BB-6290FA2260FB} = {982D320F-AA0C-44F4-9AF8-0314C532E64F}
+	EndGlobalSection
+EndGlobal
