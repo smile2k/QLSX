@@ -24,5 +24,6 @@ namespace QLSX.Module.Main.Views
         {
             InitializeComponent();
         }
+
     }
 }
