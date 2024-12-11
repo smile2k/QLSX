@@ -11,12 +11,11 @@ namespace QLSX.Module.Main.ViewModels
     public class MainViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
-
-        private ObservableCollection<Item> _data;
-        public ObservableCollection<Item> Data
+        private string _pageHeader= "Dashboard";
+        public string PageHeader
         {
-            get { return _data; }
-            set { SetProperty(ref _data, value); }
+            get { return _pageHeader; }
+            set { SetProperty(ref _pageHeader, value); }
         }
 
 
@@ -25,38 +24,42 @@ namespace QLSX.Module.Main.ViewModels
             this._regionManager = regionManager;
 
             // Sample data
-            Data = new ObservableCollection<Item>
-            {
-                new Item { Id = 1, Name = "John Doe", Age = 30 },
-                new Item { Id = 2, Name = "Jane Smith", Age = 25 },
-                new Item { Id = 3, Name = "Alice Johnson", Age = 35 },
-            };
 
+            this.SelectTabCommand = new DelegateCommand<object>(SelectTab);
             this.ShowDashboardTabCommand = new DelegateCommand(ShowDashboardTab);
             this.ShowProductsTabCommand = new DelegateCommand(ShowProductsTab);
             this.ShowFactoryTabCommand = new DelegateCommand(ShowFactoryTab);
             this.ShowStepTabCommand  = new DelegateCommand(ShowStepTab);
             this.ShowDetailTabCommand = new DelegateCommand(ShowDetailTab);
-            this.EditCommand = new DelegateCommand<object>(EditItem);
-            this.DeleteCommand = new DelegateCommand<object>(DeleteItem);
         }
 
-        public class Item
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public int Age { get; set; }
-        }
 
+        public ICommand SelectTabCommand { get; set; }
         public ICommand ShowDashboardTabCommand { get; set; }
         public ICommand ShowProductsTabCommand { get; set; }
         public ICommand ShowFactoryTabCommand { get; set; }
         public ICommand ShowStepTabCommand { get; set; }
         public ICommand ShowDetailTabCommand { get; set; }
 
-        public ICommand EditCommand { get; }
-        public ICommand DeleteCommand { get; }
 
+        private void SelectTab(object option)
+        {
+
+            switch (option.ToString())
+            {
+                case "Dashboard":
+                    {
+                        PageHeader = "Dashboard";
+                        break;
+                    }
+                case "Products":
+                    {
+                        PageHeader = "Products";
+                        _regionManager.RequestNavigate("ContentRegion", "ProductsView");
+                        break;
+                    }
+            }
+        }
         private void ShowDashboardTab()
         {
 
@@ -78,20 +81,5 @@ namespace QLSX.Module.Main.ViewModels
 
         }
 
-        private void EditItem(object obj)
-        {
-            if (obj is Item item)
-            {
-                // Logic to edit item
-            }
-        }
-
-        private void DeleteItem(object obj)
-        {
-            if (obj is Item item)
-            {
-                Data.Remove(item);
-            }
-        }
     }
 }

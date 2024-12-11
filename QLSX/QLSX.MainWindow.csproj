@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QLSX.Module.Main\QLSX.Module.Main.csproj" />
+    <ProjectReference Include="..\QLSX.Module.Products\QLSX.Module.Products.csproj" />
     <ProjectReference Include="..\QLSX.Services\QLSX.Services.csproj" />
   </ItemGroup>
 

@@ -26,6 +26,9 @@ namespace QLSX.MainWindow
             containerRegistry.RegisterSingleton<IDataHandlerService, DataHandlerService>();
 
             // Register View for Navigation.
+            containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.ProductsView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.EditProductView>();
+
         }
 
         protected override void ConfigureViewModelLocator()
@@ -34,6 +37,7 @@ namespace QLSX.MainWindow
 
             // Register View with ViewModel
             ViewModelLocationProvider.Register<QLSX.Module.Main.Views.MainView, QLSX.Module.Main.ViewModels.MainViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Products.Views.ProductsView, QLSX.Module.Products.ViewModels.ProductsViewModel>();
         }
     }
 

@@ -27,6 +27,8 @@ namespace QLSX.Main.Views
 
              // Register view with region.
             _regionManager.RegisterViewWithRegion("MainRegion", typeof(QLSX.Module.Main.Views.MainView));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(QLSX.Module.Products.Views.ProductsView));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(QLSX.Module.Products.Views.EditProductView));
         }
     }
 }

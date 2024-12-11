@@ -5,13 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLSX.Module.Main.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:prism="http://prismlibrary.com/">
     
     <UserControl.Resources>
-        <Style TargetType="Button" x:Key="MenuButtonStyle">
+        <Style TargetType="RadioButton" x:Key="MenuButtonStyle">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="LightBlue" 
                                 BorderBrush="White" 
                                 BorderThickness="0" 
@@ -21,6 +22,17 @@
                                 <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5"/>
                             </Border.Effect>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -34,11 +46,39 @@
             <Setter Property="FontSize" Value="20"/>
 
         </Style>
-        <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
-            <Setter Property="HorizontalGridLinesBrush" Value="AliceBlue" />
-            <Setter Property="VerticalGridLinesBrush" Value="AliceBlue" />
-            <Setter Property="Background" Value="LightBlue" />
-            <Setter Property="Foreground" Value="Black" />
+        
+        <Style TargetType="RadioButton" x:Key="RadioButtonAsButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Width" Value="100"/>
         </Style>
     </UserControl.Resources>
 
@@ -61,21 +101,17 @@
             </Image>
             <!--<TextBlock Text="QLSX" Margin="45,0,0,0" Foreground="#515EC1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontFamily="Arial Rounded MT Bold"/>-->
             <StackPanel Grid.Row="1" Orientation="Vertical">
-                <Button Content="Dashboard" Style="{StaticResource MenuButtonStyle}" Width="180" Height="40"
-                        Command="{Binding ShowDashboardTabCommand}">
-                </Button>
-                <Button Content="Products" Style="{StaticResource MenuButtonStyle}" Width="180" Height="40"
-                        Command="{Binding ShowProductsTabCommand}">
-                </Button>
-                <Button Content="Factory" Style="{StaticResource MenuButtonStyle}" Width="180" Height="40"
-                        Command="{Binding ShowFactoryTabCommand}">
-                </Button>
-                <Button Content="Step" Style="{StaticResource MenuButtonStyle}" Width="180" Height="40"
-                        Command="{Binding ShowStepTabCommand}">
-                </Button>
-                <Button Content="Detail" Style="{StaticResource MenuButtonStyle}" Width="180" Height="40"
-                        Command="{Binding ShowDetailTabCommand}">
-                </Button>
+                
+                <RadioButton Content="Dashboard" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
+                             Command="{Binding SelectTabCommand}" CommandParameter="Dashboard" IsChecked="True"/>
+                <RadioButton Content="Products" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
+                             Command="{Binding SelectTabCommand}" CommandParameter="Products"/>
+                <RadioButton Content="Factory" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
+                             Command="{Binding SelectTabCommand}" CommandParameter="Factory"/>
+                <RadioButton Content="Step" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
+                             Command="{Binding SelectTabCommand}" CommandParameter="Step"/>
+                <RadioButton Content="Detail" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
+                             Command="{Binding SelectTabCommand}" CommandParameter="Detail"/>
             </StackPanel>
 
         </Grid>
@@ -87,70 +123,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Background="#e9edf2">
-                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Products" VerticalAlignment="Center"/>
-
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"
+                           Text="{Binding PageHeader}"/>
             </Grid>
             <Grid Grid.Row="1" Background="Pink">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Center"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="56,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="114"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="192,0,0,0" TextWrapping="Wrap" Text="sku" VerticalAlignment="Center"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="224,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="119"/>
-                    <Button Content="Search" HorizontalAlignment="Left" Height="30" Margin="362,0,0,0" VerticalAlignment="Center" Width="78" />
-                    <Button Content="Create" HorizontalAlignment="Left" Height="30" Margin="523,0,0,0" VerticalAlignment="Center" Width="78"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <DataGrid AutoGenerateColumns="False" 
-                              ItemsSource="{Binding Data}"
-                              RowHeight="40"
-                              CanUserAddRows="False"
-                              IsReadOnly="True"
-                              SelectionMode="Single" Margin="10,0,10,0">
-                        <DataGrid.Columns>
-                            <!-- Column 1: ID -->
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
-                            
-                            <!-- Column 2: Name -->
-                            <DataGridTextColumn Header="Sku" Binding="{Binding Name}" Width="*" />
-                            
-                            <!-- Column 3: Age -->
-                            <DataGridTextColumn Header="Name" Binding="{Binding Age}" Width="*" />
-                            
-                            <!-- Column 4: Action Buttons -->
-                            <DataGridTemplateColumn Header="Actions" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <!-- Edit Button -->
-                                            <Button Content="Edit" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                                    CommandParameter="{Binding}" 
-                                                    Style="{StaticResource MaterialDesignFlatButton}" 
-                                                    Background="{DynamicResource MaterialDesignAccent}" 
-                                                    Foreground="White" 
-                                                    Margin="0,0,0,0"/>
-                                            
-                                            <!-- Delete Button -->
-                                            <Button Content="Delete" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                                    CommandParameter="{Binding}" 
-                                                    Style="{StaticResource MaterialDesignFlatButton}" 
-                                                    Background="Red" 
-                                                    Foreground="White" 
-                                                    Margin="0,0,0,-5"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>     
-                </Grid>
-                <Grid Grid.Row="2">
-                    <TextBlock HorizontalAlignment="Left" Margin="26,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Total: 200 produucts" VerticalAlignment="Center"/>
-                </Grid>
+                <UserControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion"/>
             </Grid>
         </Grid>
     </Grid>
