@@ -54,7 +54,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <Border Margin="60,40,60,40" CornerRadius="30" BorderThickness="0" BorderBrush="Black" Background="#FFFFFF">
+        <Border Margin="30,30,30,30" CornerRadius="10" BorderThickness="0" BorderBrush="Black" Background="#FFFFFF">
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -63,20 +63,21 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Tên" VerticalAlignment="Center"/>
                     <TextBox HorizontalAlignment="Left" Height="30" Margin="56,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="114"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="192,0,0,0" TextWrapping="Wrap" Text="sku" VerticalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="192,0,0,0" TextWrapping="Wrap" Text="Mã" VerticalAlignment="Center"/>
                     <TextBox HorizontalAlignment="Left" Height="30" Margin="224,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="119"/>
-                    <Button Content="Search" HorizontalAlignment="Left" Height="30" Margin="362,0,0,0" VerticalAlignment="Center" Width="78" />
-                    <Button Content="Create" HorizontalAlignment="Left" Height="30" Margin="523,0,0,0" VerticalAlignment="Center" Width="78"/>
+                    <Button Content="Tìm kiếm" HorizontalAlignment="Left" Height="30" Margin="362,0,0,0" VerticalAlignment="Center" Width="78" />
+                    <Button Content="Tạo mới" HorizontalAlignment="Left" Height="30" Margin="523,0,0,0" VerticalAlignment="Center" Width="78"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <DataGrid AutoGenerateColumns="False" 
-                      ItemsSource="{Binding Data}"
-                      RowHeight="40"
-                      CanUserAddRows="False"
-                      IsReadOnly="True"
-                      SelectionMode="Single" Margin="10,0,10,0">
+                              ItemsSource="{Binding Data}"
+                              RowHeight="40"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single" Margin="10,0,10,0"
+                              BorderThickness="0" RowHeaderWidth="0">
                         <DataGrid.Columns>
                             <!-- Column 1: ID -->
                             <DataGridTextColumn Header="ID"  Binding="{Binding Id}" MinWidth="40">
@@ -145,6 +146,8 @@
                                 <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="Margin" Value="5,0,0,0"/>
+                                <Setter Property="BorderThickness" Value="0"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                         <DataGrid.RowStyle>
@@ -165,7 +168,7 @@
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="Background" Value="#FFFFFF"/>
                                         <Setter Property="Foreground" Value="Black"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="True">
