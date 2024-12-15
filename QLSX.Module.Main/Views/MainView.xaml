@@ -52,18 +52,28 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="2"
-                                CornerRadius="5"
+                                BorderThickness="0"
+                                CornerRadius="8"
                                 Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
+                            <!--<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />-->
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <!-- Icon -->
+                                    <Image HorizontalAlignment="Left" Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}" 
+                                           Width="20" Height="20" Margin="10" />
+                                    <!-- Text -->
+                                    <TextBlock Text="{TemplateBinding Content}" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center" 
+                                               Visibility="{Binding TextVisibility}"/>
+                                </StackPanel>
+
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" Value="LightBlue" />
+                                <Setter Property="Background" Value="#5932EA" />
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="LightGray" />
+                                <Setter Property="Background" Value="LightBlue" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.5" />
@@ -73,12 +83,17 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="Background" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="BorderBrush" Value="Gray" />
             <Setter Property="Padding" Value="10,5" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Foreground" Value="#9197B3"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="46"/>
+            <Setter Property="Margin" Value="10"/>
         </Style>
     </UserControl.Resources>
 
@@ -90,7 +105,7 @@
         </Grid.ColumnDefinitions>
 
         <!--Menu-->
-        <Grid ShowGridLines="False" Background="#e9edf2">
+        <Grid ShowGridLines="False" Background="#FFFFFF">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
                 <RowDefinition/>
@@ -102,16 +117,21 @@
             <!--<TextBlock Text="QLSX" Margin="45,0,0,0" Foreground="#515EC1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontFamily="Arial Rounded MT Bold"/>-->
             <StackPanel Grid.Row="1" Orientation="Vertical">
                 
-                <RadioButton Content="Dashboard" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
-                             Command="{Binding SelectTabCommand}" CommandParameter="Dashboard" IsChecked="True"/>
-                <RadioButton Content="Products" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
-                             Command="{Binding SelectTabCommand}" CommandParameter="Products"/>
-                <RadioButton Content="Factory" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
-                             Command="{Binding SelectTabCommand}" CommandParameter="Factory"/>
-                <RadioButton Content="Step" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
-                             Command="{Binding SelectTabCommand}" CommandParameter="Step"/>
-                <RadioButton Content="Detail" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
-                             Command="{Binding SelectTabCommand}" CommandParameter="Detail"/>
+                <RadioButton Content="Bảng điều khiển" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
+                             Command="{Binding SelectTabCommand}" CommandParameter="Dashboard" IsChecked="True"
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-dashboard-50.png"/>
+                <RadioButton Content="Sản phẩm" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
+                             Command="{Binding SelectTabCommand}" CommandParameter="Products"
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-product-48.png"/>
+                <RadioButton Content="Xưởng" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
+                             Command="{Binding SelectTabCommand}" CommandParameter="Factory"
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-factory-48.png"/>
+                <RadioButton Content="Quy trình" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
+                             Command="{Binding SelectTabCommand}" CommandParameter="Step"
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-workflow-50.png"/>
+                <RadioButton Content="Chi tiết" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
+                             Command="{Binding SelectTabCommand}" CommandParameter="Detail"
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-detail-50.png"/>
             </StackPanel>
 
         </Grid>
@@ -122,11 +142,12 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid Background="#e9edf2">
+            <Grid Background="#d1e4f5">
                 <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"
+                           FontSize="24" FontFamily="Poppins"
                            Text="{Binding PageHeader}"/>
             </Grid>
-            <Grid Grid.Row="1" Background="Pink">
+            <Grid Grid.Row="1" Background="#d1e4f5">
                 <UserControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion"/>
             </Grid>
         </Grid>

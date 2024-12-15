@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QLSX.Module.Main.ViewModels
@@ -17,6 +18,14 @@ namespace QLSX.Module.Main.ViewModels
             get { return _pageHeader; }
             set { SetProperty(ref _pageHeader, value); }
         }
+        
+        private Visibility _textVisibility = Visibility.Visible;
+        public Visibility TextVisibility
+        {
+            get { return _textVisibility; }
+            set { SetProperty(ref _textVisibility, value); }
+        }
+
 
 
         public MainViewModel(IRegionManager regionManager)
