@@ -14,7 +14,7 @@ namespace QLSX.Module.Products.Models
         public string StepName { get; set; }
         public DateTime ExpectDay { get; set; }
         public DateTime ActualDay { get; set; }
-        public ProductionStatus Status { get; set; }
+        public string Status { get; set; }
 
     }
 

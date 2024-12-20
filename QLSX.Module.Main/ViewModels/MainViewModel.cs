@@ -82,12 +82,12 @@ namespace QLSX.Module.Main.ViewModels
             {
                 case "Dashboard":
                     {
-                        PageHeader = "Dashboard";
+                        PageHeader = "Bảng điều khiển";
                         break;
                     }
                 case "Products":
                     {
-                        PageHeader = "Products";
+                        PageHeader = "Sản phẩm";
                         _regionManager.RequestNavigate("ContentRegion", "ProductsView");
                         break;
                     }

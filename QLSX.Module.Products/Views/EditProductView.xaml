@@ -45,20 +45,60 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Foreground" Value="#9197B3"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontFamily" Value="Poppins"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="29"/>
             <Setter Property="Margin" Value="0,0,0,0"/>
         </Style>
+         
+         <Style TargetType="Button" x:Key="CustomButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#515EC1" />
+                                <Setter Property="Foreground" Value="#FFFFFF" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="29"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
     </UserControl.Resources>
 
 
     <Border Margin="30,30,30,30" CornerRadius="10" BorderThickness="0" BorderBrush="Black" Background="#FFFFFF">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition/>
+                <RowDefinition Height="90"/>
+                <RowDefinition />
+                <RowDefinition Height="90"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -88,16 +128,16 @@
 
             </Grid>
             <Grid Grid.Row="1">
-                <DataGrid AutoGenerateColumns="False" 
-                              ItemsSource="{Binding Data}"
+                <DataGrid     x:Name="EditProductDatagrid"  AutoGenerateColumns="False" 
+                              ItemsSource="{Binding EditProductDataTable}"
                               RowHeight="40"
                               CanUserAddRows="False"
-                              IsReadOnly="True"
+                              IsReadOnly="False"
                               SelectionMode="Single" Margin="10,0,10,0"
                               BorderThickness="0" RowHeaderWidth="0">
                     <DataGrid.Columns>
                         <!-- Column 1: ID -->
-                        <DataGridTextColumn Header="Bước"  Binding="{Binding Step}" MinWidth="40">
+                        <DataGridTextColumn Header="Bước"  Binding="{Binding Step}" MinWidth="40" IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextAlignment" Value="Left" />
@@ -108,7 +148,7 @@
                         </DataGridTextColumn>
 
                         <!-- Column 2: Name -->
-                        <DataGridTextColumn Header="Tên" Binding="{Binding StepName}" MinWidth="120" Width="*">
+                        <DataGridTextColumn Header="Tên" Binding="{Binding StepName}" MinWidth="120" Width="*" IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextAlignment" Value="Left" />
@@ -141,15 +181,29 @@
                         </DataGridTextColumn>
 
                         <!--Status-->
-                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" MinWidth="200" Width="*">
-                            <DataGridTextColumn.ElementStyle>
+                        <DataGridTemplateColumn Header="Trạng thái" MinWidth="200" Width="*"
+                                                >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Status}" 
+                                               TextAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox 
+                                        ItemsSource="{Binding DataContext.StatusOptions, ElementName = EditProductDatagrid}" 
+                                        SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                            <!--<DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextAlignment" Value="Left" />
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Margin" Value="5"/>
                                 </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                            </DataGridTextColumn.ElementStyle>-->
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
 
                     <DataGrid.ColumnHeaderStyle>
@@ -172,6 +226,7 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#FFFFFF"/>
                                 </Trigger>
+                                
                             </Style.Triggers>
                             <Setter Property="Background" Value="White"/>
                             <Setter Property="Height" Value="40"/>
@@ -187,6 +242,19 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="LightBlue"/>
                                 </Trigger>
+                                
+                                <DataTrigger Binding="{Binding Status}" Value="Done">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                                
+                                <DataTrigger Binding="{Binding Status}" Value="Inprogress">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                </DataTrigger>
+                                
+                                <DataTrigger Binding="{Binding Status}" Value="None">
+                                    <Setter Property="Background" Value="LightGoldenrodYellow" />
+                                </DataTrigger>
+
                             </Style.Triggers>
                             <Setter Property="Background" Value="White"/>
                             <Setter Property="Foreground" Value="Black"/>
@@ -198,6 +266,24 @@
                         </Style>
                     </DataGrid.CellStyle>
                 </DataGrid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Button Content="Lưu lại" Style="{StaticResource CustomButton}">
+                        
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Content="Trở về" Style="{StaticResource CustomButton}">
+                        
+                    </Button>
+
+                </Grid>
             </Grid>
         </Grid>
     </Border>
