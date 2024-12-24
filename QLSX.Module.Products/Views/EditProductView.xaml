@@ -87,7 +87,7 @@
             <Setter Property="FontFamily" Value="Poppins"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="29"/>
-            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
 
     </UserControl.Resources>
@@ -98,7 +98,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
                 <RowDefinition />
-                <RowDefinition Height="90"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -270,8 +270,8 @@
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="90"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <Button Content="Lưu lại" Style="{StaticResource CustomButton}">
@@ -279,7 +279,8 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Button Content="Trở về" Style="{StaticResource CustomButton}">
+                    <Button Content="Trở về" Style="{StaticResource CustomButton}"
+                            Command="{Binding BackToProductCommand}">
                         
                     </Button>
 

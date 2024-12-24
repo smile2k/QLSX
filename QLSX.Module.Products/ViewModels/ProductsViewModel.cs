@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLSX.Based.Common.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace QLSX.Module.Products.ViewModels
     {
 
         private readonly IRegionManager _regionManager;
+        private readonly IEventAggregator _eventAggregator;
+
         private ObservableCollection<Item> _data;
         public ObservableCollection<Item> Data
         {
@@ -19,9 +22,11 @@ namespace QLSX.Module.Products.ViewModels
             set { SetProperty(ref _data, value); }
         }
 
-        public ProductsViewModel(IRegionManager regionManager)
+        public ProductsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             this._regionManager = regionManager;
+            this._eventAggregator = eventAggregator;
+
             Data = new ObservableCollection<Item>
             {
                 new Item { Id = 1, Name = "John Doe", Age = 30 },
@@ -50,6 +55,13 @@ namespace QLSX.Module.Products.ViewModels
         {
             if (obj is Item item)
             {
+                var payload = new EventPayload<string>
+                {
+                    Id = "001_ChangePageHeader",
+                    Data = "Sản phẩm > Sửa"
+                };
+
+                _eventAggregator.GetEvent<GenericEvent<string>>().Publish(payload);
                 _regionManager.RequestNavigate("ContentRegion", "EditProductView");
             }
         }

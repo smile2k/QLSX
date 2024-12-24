@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QLSX.Based.Common\QLSX.Based.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\icons8-dashboard-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

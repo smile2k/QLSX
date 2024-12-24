@@ -1,16 +1,19 @@
-﻿using QLSX.Module.Products.Models;
+﻿using QLSX.Based.Common.Events;
+using QLSX.Module.Products.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace QLSX.Module.Products.ViewModels
 {
     public class EditProductViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
+        private readonly IEventAggregator _eventAggregator;
         
         private ObservableCollection<EditProductData> _editProductDataTable;
         public ObservableCollection<EditProductData> EditProductDataTable
@@ -26,10 +29,11 @@ namespace QLSX.Module.Products.ViewModels
             set => SetProperty(ref _statusOptions, value);
         }
 
-        public EditProductViewModel(IRegionManager regionManager)
+        public EditProductViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
 
             this._regionManager = regionManager;
+            this._eventAggregator = eventAggregator;
 
             StatusOptions = new ObservableCollection<string> { "Done", "Inprogress", "None", "Missing" };
             EditProductDataTable = new ObservableCollection<EditProductData>
@@ -40,8 +44,29 @@ namespace QLSX.Module.Products.ViewModels
             };
 
 
+            this.BackToProductCommand = new DelegateCommand(BackToProduct);
         }
 
+        public ICommand BackToProductCommand { get; }
     
+
+        private void BackToProduct()
+        {
+            var payload = new EventPayload<string>
+            {
+                Id = "001_ChangePageHeader",
+                Data = "Sản phẩm"
+            };
+
+            _eventAggregator.GetEvent<GenericEvent<string>>().Publish(payload);
+
+            _regionManager.RequestNavigate("ContentRegion", "ProductsView");
+        }
+
+        private void SaveEdittedProduct()
+        {
+
+
+        }
     }
 }

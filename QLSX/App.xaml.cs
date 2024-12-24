@@ -29,6 +29,9 @@ namespace QLSX.MainWindow
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.ProductsView>();
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.EditProductView>();
 
+            // Register EventAggregator.
+            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
+
         }
 
         protected override void ConfigureViewModelLocator()

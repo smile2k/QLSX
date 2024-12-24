@@ -15,4 +15,8 @@
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QLSX.Based.Common\QLSX.Based.Common.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLSX.Based.Common.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace QLSX.Module.Main.ViewModels
     public class MainViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
-        private string _pageHeader= "Dashboard";
+        private readonly IEventAggregator _eventAggregator;
+
+        private string _pageHeader= "Bảng điều khiển";
         public string PageHeader
         {
             get { return _pageHeader; }
@@ -48,9 +51,11 @@ namespace QLSX.Module.Main.ViewModels
             set { SetProperty(ref _expandButtonImageSource, value); }
         }
 
-        public MainViewModel(IRegionManager regionManager)
+        public MainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             this._regionManager = regionManager;
+            this._eventAggregator = eventAggregator;
+
             ExpandButtonImageSource = "/QLSX.Module.Main;component/Resources/icons8-sidebar-left24.png";
             MenuWidth = 300;
             // Sample data
@@ -63,6 +68,10 @@ namespace QLSX.Module.Main.ViewModels
             this.ShowDetailTabCommand = new DelegateCommand(ShowDetailTab);
 
             this.ExpandCommand = new DelegateCommand(ExpandMenu);
+
+            // Event
+            _eventAggregator.GetEvent<GenericEvent<string>>()
+                .Subscribe(ChangePageHeader, ThreadOption.PublisherThread, false, payload => payload.Id == "001_ChangePageHeader");
         }
 
 
@@ -138,6 +147,11 @@ namespace QLSX.Module.Main.ViewModels
         private void ShowDetailTab()
         {
 
+        }
+
+        private void ChangePageHeader(EventPayload<string> payload)
+        {
+            PageHeader = payload.Data.ToString();
         }
 
     }
