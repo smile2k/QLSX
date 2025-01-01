@@ -29,9 +29,11 @@ namespace QLSX.Module.Products.ViewModels
 
             Data = new ObservableCollection<Item>
             {
-                new Item { Id = 1, Name = "John Doe", Age = 30 },
-                new Item { Id = 2, Name = "Jane Smith", Age = 25 },
-                new Item { Id = 3, Name = "Alice Johnson", Age = 35 },
+                new Item { Id = 1, Sku = "AH123", ProductName = "Áo thu đông", Factory = "Thanh trì", Status = "Đã xong" },
+                new Item { Id = 2, Sku = "AH123", ProductName = "Áo thu đông", Factory = "Chương Mỹ", Status = "Đã xong"  },
+                new Item { Id = 3, Sku = "AK456", ProductName = "Áo khoác", Factory = "Thanh Trì", Status = "Đang sản xuất" },
+                new Item { Id = 4, Sku = "BH190", ProductName = "Áo cộc", Factory = "", Status = "Chờ xếp xưởng" },
+                new Item { Id = 5, Sku = "HO999", ProductName = "Áo len", Factory = "Yên Xá", Status = "Đã xong" },
             };
 
             this.EditCommand = new DelegateCommand<object>(EditItem);
@@ -41,8 +43,11 @@ namespace QLSX.Module.Products.ViewModels
         public class Item
         {
             public int Id { get; set; }
-            public string Name { get; set; }
-            public int Age { get; set; }
+            public string Sku { get; set; }
+            public string ProductName { get; set; }
+            public string Factory { get; set; }
+            public string Status { get; set; }
+            public int Action { get; set; }
         }
 
 
