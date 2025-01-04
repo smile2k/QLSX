@@ -22,6 +22,34 @@ namespace QLSX.Module.Products.ViewModels
             set { SetProperty(ref _data, value); }
         }
 
+        private string _skuTxb ="";
+        public string SkuTxb
+        {
+            get => _skuTxb;
+            set => SetProperty(ref _skuTxb, value);
+        }
+
+        private string _factoryTxb ="";
+        public string FactoryTxb
+        {
+            get => _factoryTxb;
+            set => SetProperty(ref _factoryTxb, value);
+        }
+
+        private string _stepTxb ="";
+        public string StepTxb
+        {
+            get => _stepTxb;
+            set => SetProperty(ref _stepTxb, value);
+        }
+
+        private string _statusTxb ="";
+        public string StatusTxb
+        {
+            get => _statusTxb;
+            set => SetProperty(ref _statusTxb, value);
+        }
+
         public ProductsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             this._regionManager = regionManager;
@@ -38,6 +66,8 @@ namespace QLSX.Module.Products.ViewModels
 
             this.EditCommand = new DelegateCommand<object>(EditItem);
             this.DeleteCommand = new DelegateCommand<object>(DeleteItem);
+            this.CreateProductCommand = new DelegateCommand(CreateProduct);
+            this.FilterProductCommand = new DelegateCommand(FilterProduct);
 
         }
         public class Item
@@ -53,6 +83,8 @@ namespace QLSX.Module.Products.ViewModels
 
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
+        public ICommand CreateProductCommand { get; }
+        public ICommand FilterProductCommand { get; }
 
 
 
@@ -77,6 +109,15 @@ namespace QLSX.Module.Products.ViewModels
             {
                 Data.Remove(item);
             }
+        }
+
+        private void CreateProduct()
+        {
+
+        }
+        private void FilterProduct()
+        {
+
         }
 
     }

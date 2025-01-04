@@ -80,7 +80,38 @@
             <Setter Property="FontFamily" Value="Poppins"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="29"/>
-            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+        </Style>
+        
+        <Style x:Key="FilterTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="#F9FBFF" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Setter Property="Padding" Value="0,0,0,2" />
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="2" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FilterTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="0,0,0,0" />
+            <Setter Property="Margin" Value="5,5,0,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
     </UserControl.Resources>
@@ -90,27 +121,93 @@
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
+                
+                <!-- Filter , Create-->
                 <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="98"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <!--<TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Tên" VerticalAlignment="Center"/>
-                        <TextBox HorizontalAlignment="Left" Height="30" Margin="56,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="114"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="192,0,0,0" TextWrapping="Wrap" Text="Mã" VerticalAlignment="Center"/>
-                        <TextBox HorizontalAlignment="Left" Height="30" Margin="224,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="119"/>
-                        <Button Content="Tìm kiếm" HorizontalAlignment="Left" Height="30" Margin="362,0,0,0" VerticalAlignment="Center" Width="78" />-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <!--Filter-->
+                    <Grid Grid.Row="0" Margin="10,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Mã:" Style="{StaticResource FilterTextBlock}"/>
+
+                                <TextBox Grid.Column="1"
+                                         Style="{StaticResource FilterTextBoxStyle}"
+                                         Text="{Binding SkuTxb}">
+                                </TextBox>
+                            </Grid>    
+                        </Border>
+                        <Border Grid.Column="1" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Xưởng:"  Style="{StaticResource FilterTextBlock}"/>
+                                <TextBox Grid.Column="1"
+                                         Style="{StaticResource FilterTextBoxStyle}"
+                                         Text="{Binding FactoryTxb}">
+                                </TextBox>
+                            </Grid>    
+                        </Border>
+                        <Border Grid.Column="2" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Bước:"  Style="{StaticResource FilterTextBlock}"/>
+                                <TextBox Grid.Column="1"
+                                         Style="{StaticResource FilterTextBoxStyle}"
+                                         Text="{Binding StepTxb}">
+                                </TextBox>
+                            </Grid>     
+                        </Border>
+                        <Border Grid.Column="3" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Trạng thái:"  Style="{StaticResource FilterTextBlock}"/>
+                                <TextBox Grid.Column="1"
+                                         Style="{StaticResource FilterTextBoxStyle}"
+                                         Text="{Binding StatusTxb}">
+                                </TextBox>
+                            </Grid>      
+                        </Border>
+                         <Button Grid.Column="4" Content="Lọc" Style="{StaticResource CustomButton1}" HorizontalAlignment="Right"
+                                 Command="{Binding FilterProductCommand}"/>
+
                     </Grid>
-                    <Grid Grid.Column="1">
-                        <Button Content="Tạo mới" Style="{StaticResource CustomButton1}"  Margin="0,0,10,0" />
+                    <!--Create-->
+                    <Grid Grid.Row="1">
+                        <Button Content="Tạo mới" Style="{StaticResource CustomButton1}"  
+                                HorizontalAlignment="Right"
+                                Command="{Binding CreateProductCommand}"/>
                     </Grid>
                 </Grid>
+                <!-- Product Table-->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -370,13 +467,13 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
                         <Button Content="Previous" Command="{Binding Items.PreviousPageCommand}" />
                         <TextBlock Text="{Binding Items.CurrentPageNumber}" VerticalAlignment="Center" Margin="5" />
                         <TextBlock Text="/" VerticalAlignment="Center" Margin="5" />
                         <TextBlock Text="{Binding Items.TotalPages}" VerticalAlignment="Center" Margin="5" />
                         <Button Content="Next" Command="{Binding Items.NextPageCommand}" />
-                    </StackPanel>
+                    </StackPanel>-->
                 </Grid>
                 <Grid Grid.Row="3">
                     <!--<TextBlock HorizontalAlignment="Left" Margin="26,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Total: 200 produucts" VerticalAlignment="Center"/>-->
