@@ -100,6 +100,12 @@ namespace QLSX.Module.Main.ViewModels
                         _regionManager.RequestNavigate("ContentRegion", "ProductsView");
                         break;
                     }
+                case "Factory":
+                    {
+                        PageHeader = "Quy trình";
+                        _regionManager.RequestNavigate("ContentRegion", "FactoryView");
+                        break;
+                    }
             }
         }
 

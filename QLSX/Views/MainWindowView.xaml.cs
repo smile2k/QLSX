@@ -29,6 +29,8 @@ namespace QLSX.Main.Views
             _regionManager.RegisterViewWithRegion("MainRegion", typeof(QLSX.Module.Main.Views.MainView));
             _regionManager.RegisterViewWithRegion("ContentRegion", typeof(QLSX.Module.Products.Views.ProductsView));
             _regionManager.RegisterViewWithRegion("ContentRegion", typeof(QLSX.Module.Products.Views.EditProductView));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(QLSX.Module.Factory.Views.FactoryView));
+
         }
     }
 }
