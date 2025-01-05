@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace QLSX.Module.Products.ViewModels
 {
-    public class ProductsViewModel : BindableBase
+    public class ProductsViewModel : BindableBase, INavigationAware
     {
 
         private readonly IRegionManager _regionManager;
@@ -87,6 +87,25 @@ namespace QLSX.Module.Products.ViewModels
         public ICommand FilterProductCommand { get; }
 
 
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            if (navigationContext.Parameters.ContainsKey("CompletedProduct"))
+            {
+                var queryString = navigationContext.Parameters["CompletedProduct"] as string;  
+                
+                // Call Query
+            }
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;    
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            //throw new NotImplementedException();
+        }
 
         private void EditItem(object obj)
         {

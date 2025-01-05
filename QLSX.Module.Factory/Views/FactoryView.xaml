@@ -166,7 +166,7 @@
                             BorderBrush="#0078D7">
                         <DatePicker Height="35" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"
                                 FontSize="14" BorderThickness="0"
-                                SelectedDate="{Binding EndDate}">
+                                SelectedDate="{Binding EndDate, StringFormat=dd/MM/yyyy}">
                         </DatePicker>
                     </Border>
                     
@@ -215,7 +215,7 @@
                                 </DataGridTextColumn>
 
                                 <!--1-->
-                                <DataGridTemplateColumn Header="Đang sản xuất" MinWidth="100" MaxWidth="200">
+                                <DataGridTemplateColumn Header="Đã sản xuất" MinWidth="100" MaxWidth="200">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Content="{Binding CompletedQuantity}"
@@ -232,7 +232,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Content="{Binding CompletedQuantity}"
-                                                    Command="{Binding DataContext.SearchCompletedProductCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    Command="{Binding DataContext.SearchInprogressProductCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                     CommandParameter="{Binding}"
                                                     Style="{StaticResource CustomButton2}">
                                                 
@@ -294,7 +294,7 @@
                 </Grid>
                 <Grid Grid.Row="2">
                     
-                    <Image Source="pack://application:,,,/QLSX.Module.Factory;component/Resources/tear_off_calendar_icon48.png" Stretch="Uniform"/>
+                    <!--<Image Source="pack://application:,,,/QLSX.Module.Factory;component/Resources/tear_off_calendar_icon48.png" Stretch="Uniform"/>-->
                 </Grid>
 
 
