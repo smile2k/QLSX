@@ -55,10 +55,12 @@ namespace QLSX.Module.Factory.ViewModels
 
             this.SearchCompletedProductCommand = new DelegateCommand<object>(SearchCompletedProduct);
             this.SearchInprogressProductCommand = new DelegateCommand<Object>(SearchInprogressProduct);
+            this.SubmitCommand = new DelegateCommand(Submit);
         }
 
         public ICommand SearchCompletedProductCommand { get; }
         public ICommand SearchInprogressProductCommand { get; }
+        public ICommand SubmitCommand { get; }
 
 
         private void SearchCompletedProduct(object param)
@@ -100,5 +102,11 @@ namespace QLSX.Module.Factory.ViewModels
                 _regionManager.RequestNavigate("ContentRegion", "ProductsView", navigationParameters);
             }
         }
+
+        private void Submit()
+        {
+
+        }
+
     }
 }
