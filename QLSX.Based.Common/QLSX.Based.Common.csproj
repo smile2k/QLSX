@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\tear_off_calendar_icon48.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Prism.Core" Version="9.0.537" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\tear_off_calendar_icon48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
