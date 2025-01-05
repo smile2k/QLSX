@@ -138,20 +138,24 @@
             <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,20,0,0">
                 
                 <RadioButton Content="Bảng điều khiển" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
-                             Command="{Binding SelectTabCommand}" CommandParameter="Dashboard" IsChecked="True"
-                             Tag="/QLSX.Module.Main;component/Resources/icons8-dashboard-50.png"/>
+                             Command="{Binding SelectTabCommand}" CommandParameter="Dashboard" 
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-dashboard-50.png"
+                             IsChecked="{Binding IsDashboardTabChecked}"/>
                 <RadioButton Content="Sản phẩm" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
                              Command="{Binding SelectTabCommand}" CommandParameter="Products"
-                             Tag="/QLSX.Module.Main;component/Resources/icons8-product-48.png"/>
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-product-48.png"
+                             IsChecked="{Binding IsProductTabChecked}"/>
                 <RadioButton Content="Xưởng" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
                              Command="{Binding SelectTabCommand}" CommandParameter="Factory"
-                             Tag="/QLSX.Module.Main;component/Resources/icons8-factory-48.png"/>
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-factory-48.png"
+                             IsChecked="{Binding IsFactoryTabChecked}"/>
                 <RadioButton Content="Quy trình" GroupName="Options" Style="{StaticResource RadioButtonAsButton}" 
                              Command="{Binding SelectTabCommand}" CommandParameter="Step"
-                             Tag="/QLSX.Module.Main;component/Resources/icons8-workflow-50.png"/>
-                <RadioButton Content="Chi tiết" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-workflow-50.png"
+                             IsChecked="{Binding IsStepTabChecked}"/>
+                <!--<RadioButton Content="Chi tiết" GroupName="Options" Style="{StaticResource RadioButtonAsButton}"
                              Command="{Binding SelectTabCommand}" CommandParameter="Detail"
-                             Tag="/QLSX.Module.Main;component/Resources/icons8-detail-50.png"/>
+                             Tag="/QLSX.Module.Main;component/Resources/icons8-detail-50.png"/>-->
             </StackPanel>
 
         </Grid>

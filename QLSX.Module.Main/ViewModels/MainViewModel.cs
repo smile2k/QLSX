@@ -51,6 +51,35 @@ namespace QLSX.Module.Main.ViewModels
             set { SetProperty(ref _expandButtonImageSource, value); }
         }
 
+        private bool _isDashboardTabChecked = true;
+        public bool IsDashboardTabChecked
+        {
+            get => _isDashboardTabChecked;
+            set => SetProperty(ref _isDashboardTabChecked, value);
+        }
+
+
+        private bool _isProductTabChecked = false;
+        public bool IsProductTabChecked
+        {
+            get => _isProductTabChecked;
+            set => SetProperty(ref _isProductTabChecked, value);
+        }
+
+        private bool _isFactoryTabChecked = false;
+        public bool IsFactoryTabChecked
+        {
+            get => _isFactoryTabChecked;
+            set => SetProperty(ref _isFactoryTabChecked, value);
+        }
+
+        private bool _isStepTabChecked = false;
+        public bool IsStepTabChecked
+        {
+            get => _isStepTabChecked;
+            set => SetProperty(ref _isStepTabChecked, value);
+        }
+
         public MainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             this._regionManager = regionManager;
@@ -72,6 +101,8 @@ namespace QLSX.Module.Main.ViewModels
             // Event
             _eventAggregator.GetEvent<GenericEvent<string>>()
                 .Subscribe(ChangePageHeader, ThreadOption.PublisherThread, false, payload => payload.Id == "001_ChangePageHeader");
+            _eventAggregator.GetEvent<GenericEvent<string>>()
+                .Subscribe(SwitchTab, ThreadOption.PublisherThread, false, payload => payload.Id == "002_SwitchTab");
         }
 
 
@@ -158,6 +189,29 @@ namespace QLSX.Module.Main.ViewModels
         private void ChangePageHeader(EventPayload<string> payload)
         {
             PageHeader = payload.Data.ToString();
+        }
+
+        private void SwitchTab(EventPayload<string> payload)
+        {
+            switch(payload.Data.ToString())
+            {
+                case "Dashboard":
+                    {
+                        IsProductTabChecked = true;
+                        break;
+                    }
+                case "Products":
+                    {
+                        IsProductTabChecked = true;
+                        break;
+                    }
+                case "Factory":
+                    {
+                        IsFactoryTabChecked = true;
+                        break;
+                    }
+            }
+
         }
 
     }

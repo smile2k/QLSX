@@ -1,4 +1,5 @@
-﻿using QLSX.Module.Factory.Models;
+﻿using QLSX.Based.Common.Events;
+using QLSX.Module.Factory.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,6 +70,13 @@ namespace QLSX.Module.Factory.ViewModels
                 var navigationParameters = new NavigationParameters();
                 navigationParameters.Add("CompletedProduct", queryString);
 
+                var payload = new EventPayload<string>
+                {
+                    Id = "002_SwitchTab",
+                    Data = "Products"
+                };
+                _eventAggregator.GetEvent<GenericEvent<string>>().Publish(payload);
+
                 _regionManager.RequestNavigate("ContentRegion", "ProductsView", navigationParameters);
             }
         }
@@ -81,6 +89,13 @@ namespace QLSX.Module.Factory.ViewModels
                 string queryString = "";
                 var navigationParameters = new NavigationParameters();
                 navigationParameters.Add("InprogressProduct", queryString);
+
+                var payload = new EventPayload<string>
+                {
+                    Id = "002_SwitchTab",
+                    Data = "Products"
+                };
+                _eventAggregator.GetEvent<GenericEvent<string>>().Publish(payload);
 
                 _regionManager.RequestNavigate("ContentRegion", "ProductsView", navigationParameters);
             }
