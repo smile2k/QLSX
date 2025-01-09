@@ -133,10 +133,17 @@ namespace QLSX.Module.Main.ViewModels
                     }
                 case "Factory":
                     {
-                        PageHeader = "Quy trình";
+                        PageHeader = "Xưởng";
                         _regionManager.RequestNavigate("ContentRegion", "FactoryView");
                         break;
                     }
+                case "Step":
+                    {
+                        PageHeader = "Quy trình";
+                        _regionManager.RequestNavigate("ContentRegion", "StepView");
+                        break;
+                    }
+
             }
         }
 
@@ -208,6 +215,11 @@ namespace QLSX.Module.Main.ViewModels
                 case "Factory":
                     {
                         IsFactoryTabChecked = true;
+                        break;
+                    }
+                case "Step":
+                    {
+                        IsStepTabChecked = true;
                         break;
                     }
             }

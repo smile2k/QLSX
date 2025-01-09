@@ -28,6 +28,9 @@ namespace QLSX.MainWindow
             // Register View for Navigation.
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.ProductsView>();
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.EditProductView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Factory.Views.FactoryView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Step.Views.StepView>();
+
 
             // Register EventAggregator.
             containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
@@ -41,6 +44,9 @@ namespace QLSX.MainWindow
             // Register View with ViewModel
             ViewModelLocationProvider.Register<QLSX.Module.Main.Views.MainView, QLSX.Module.Main.ViewModels.MainViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Products.Views.ProductsView, QLSX.Module.Products.ViewModels.ProductsViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Products.Views.EditProductView, QLSX.Module.Products.ViewModels.EditProductViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Factory.Views.FactoryView, QLSX.Module.Factory.ViewModels.FactoryViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Step.Views.StepView, QLSX.Module.Step.ViewModels.StepViewModel>();
         }
     }
 
