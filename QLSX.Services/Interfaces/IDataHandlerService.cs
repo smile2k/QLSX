@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLSX.Services.Interfaces
 {
-    public class IDataHandlerService
+    public interface IDataHandlerService
     {
     }
 }

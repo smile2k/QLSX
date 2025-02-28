@@ -14,6 +14,7 @@ namespace QLSX.Module.Products.ViewModels
 
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IDialogService _dialogService;
 
         private ObservableCollection<Item> _data;
         public ObservableCollection<Item> Data
@@ -50,10 +51,12 @@ namespace QLSX.Module.Products.ViewModels
             set => SetProperty(ref _statusTxb, value);
         }
 
-        public ProductsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+        public ProductsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator,
+                                IDialogService dialogService)
         {
             this._regionManager = regionManager;
             this._eventAggregator = eventAggregator;
+            this._dialogService = dialogService;
 
             Data = new ObservableCollection<Item>
             {
@@ -124,11 +127,19 @@ namespace QLSX.Module.Products.ViewModels
 
         private void DeleteItem(object obj)
         {
-            if (obj is Item item)
+            _dialogService.ShowDialog("CustomPopup", new DialogParameters { { "Message", "Bạn có chắc chắn muốn xóa sản phẩm không?" } },
+            result =>
             {
-                Data.Remove(item);
-            }
-        }
+                if (result.Result == ButtonResult.OK)
+                {
+                    if (obj is Item item)
+                    {
+                        Data.Remove(item);
+                    }
+
+                }
+            });
+                    }
 
         private void CreateProduct()
         {

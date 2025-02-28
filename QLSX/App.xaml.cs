@@ -6,6 +6,8 @@ using Prism.Ioc;
 using Prism.Unity;
 using QLSX.Services.Implementations;
 using QLSX.Services.Interfaces;
+using QLSX.Module.Main.Views;
+using QLSX.Module.Main.ViewModels;
 
 namespace QLSX.MainWindow
 {
@@ -24,6 +26,7 @@ namespace QLSX.MainWindow
         {
             // Register Service.
             containerRegistry.RegisterSingleton<IDataHandlerService, DataHandlerService>();
+            containerRegistry.RegisterDialog<CustomPopup, CustomPopupViewModel>();
 
             // Register View for Navigation.
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.ProductsView>();
@@ -47,6 +50,7 @@ namespace QLSX.MainWindow
             ViewModelLocationProvider.Register<QLSX.Module.Products.Views.EditProductView, QLSX.Module.Products.ViewModels.EditProductViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Factory.Views.FactoryView, QLSX.Module.Factory.ViewModels.FactoryViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Step.Views.StepView, QLSX.Module.Step.ViewModels.StepViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Main.Views.CustomPopup, QLSX.Module.Main.ViewModels.CustomPopupViewModel>();
         }
     }
 
