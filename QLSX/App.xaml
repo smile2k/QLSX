@@ -14,5 +14,11 @@
                 <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <!--<Style TargetType="prism:DialogWindow">
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>-->
     </Application.Resources>
 </prism:PrismApplication>
