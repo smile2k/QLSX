@@ -6,7 +6,317 @@
              xmlns:local="clr-namespace:QLSX.Module.Step.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+    <UserControl.Resources>
+        <Style TargetType="TabControl" x:Key="TabControl">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
             
+        </Style>
+        
+        <Style TargetType="TabItem" x:Key="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid>
+                            <Border Name="Border" Background="LightBlue" Padding="10" CornerRadius="12,12,0,0" Margin="0">
+                                <TextBlock Text="{TemplateBinding Header}" FontSize="14" Foreground="White"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#5932ea"/>
+                            </Trigger>
+                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="LightBlue"/>
+                            </Trigger>-->
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="ActionButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="CustomButton1">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#00B087" />
+            <Setter Property="BorderBrush" Value="#DDE4F0" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="29"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="LightBlue">
+        <TabControl Grid.Row="0" Style="{StaticResource TabControl}">
+
+            <TabItem Header="Tổng hợp quy trình" Style="{StaticResource TabItem}">
+                <Grid Margin="2,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Grid.Column="0" AutoGenerateColumns="False" 
+                          ItemsSource="{Binding FactorySource}"
+                          RowHeight="40"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single" Margin="0,0,0,0"
+                          BorderThickness="0" RowHeaderWidth="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <DataGrid.Columns>
+                                <!-- Column 1: ID -->
+                                <DataGridTextColumn Header="ID"  Binding="{Binding ID}" MinWidth="40">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Margin" Value="5"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <!--Factory-->
+                                <DataGridTextColumn Header="Xưởng" Binding="{Binding FactoryName}" MinWidth="100" Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Margin" Value="20,5,5,5"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="#FFFFFF"/>
+                                    <Setter Property="Foreground" Value="#B5B7C0"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Height" Value="40"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="BorderBrush" Value="Gray"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="5,0,0,0"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+                        </DataGrid>
+                        
+                        <DataGrid Grid.Column="1" AutoGenerateColumns="False" 
+                              ItemsSource="{Binding Data}"
+                              RowHeight="40"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single" Margin="0,0,0,0"
+                              BorderThickness="0" RowHeaderWidth="0"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <DataGrid.Columns>
+                                 <DataGridTemplateColumn Header="Thao tác" Width="80" MaxWidth="80" MinWidth="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <!-- Edit Button -->
+                                                <Button
+                                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                        CommandParameter="{Binding}" 
+                                                        Style="{StaticResource ActionButton}">
+                                                    <Button.Content>
+                                                        <Viewbox Width="24" Height="24">
+                                                            <Path Data="M42.948,12.532 L10.489,44.99 L3,47 L5.009,39.511 L37.468,7.052 M5.191,39.328 L10.672,44.809 L3.474,46.526 M45.749,11.134 c-0.005,0.004,0.824-0.825,0.824-0.825 c1.901-1.901,1.901-4.983,0.002-6.883 c-1.903-1.902-4.984-1.9-6.885,0 c0,0-0.83,0.83-0.825,0.825L45.749,11.134z" 
+                                                                  Fill="White" 
+                                                                  Stroke="Black" 
+                                                                  StrokeLineJoin="Round" 
+                                                                  StrokeMiterLimit="10"/>
+                                                        </Viewbox>
+                                                    </Button.Content>    
+                                                </Button>
+
+                                                <!-- Delete Button -->
+                                                <Button 
+                                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                        CommandParameter="{Binding}" 
+                                                        Style="{StaticResource ActionButton}">
+                                                    <Button.Content>
+                                                        <Viewbox Width="24" Height="24">
+                                                            <Path Data="M19,6V3c0-1.104,0.896-2,2-2h8c1.104,0,2,0.896,2,2v3 M40,6l-3.693,41.426C36.229,48.299,35.469,49,34.608,49H15.391c-0.86,0-1.621-0.701-1.699-1.574L10,6 M8,6H42
+                                                                        M25,11V44
+                                                                        M31,11V44
+                                                                        M19,11V44" 
+                                                                  Fill="White" 
+                                                                  Stroke="Black" 
+                                                                  StrokeLineJoin="Round" 
+                                                                  StrokeMiterLimit="10"/>
+                                                        </Viewbox>
+                                                    </Button.Content> 
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="#FFFFFF"/>
+                                    <Setter Property="Foreground" Value="#B5B7C0"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Height" Value="40"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="BorderBrush" Value="Gray"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="5,0,0,0"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                        </DataGrid>
+                        
+                    </Grid>
+                    <Button Grid.Row="1" Content="Tạo quy trình mới" Style="{StaticResource CustomButton1}" HorizontalAlignment="Right"
+                                 Command="{Binding FilterProductCommand}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tổng hợp bước" Style="{StaticResource TabItem}">
+                <TextBlock Text="Security settings..." Margin="10"/>
+            </TabItem>
+            <TabItem Header="Thêm" Style="{StaticResource TabItem}">
+                <TextBlock Text="More details here..." Margin="10"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
