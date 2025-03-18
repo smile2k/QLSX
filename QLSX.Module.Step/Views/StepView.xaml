@@ -121,7 +121,7 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
+                            <ColumnDefinition />
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
                         <DataGrid Grid.Column="0" AutoGenerateColumns="False" 
@@ -144,8 +144,8 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <!--Factory-->
-                                <DataGridTextColumn Header="Xưởng" Binding="{Binding FactoryName}" MinWidth="100" Width="*">
+                                <!--ProcessName-->
+                                <DataGridTextColumn Header="Tên quy trình" Binding="{Binding ProcessName}" MinWidth="100" Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
@@ -205,7 +205,7 @@
                         </DataGrid>
                         
                         <DataGrid Grid.Column="1" AutoGenerateColumns="False" 
-                              ItemsSource="{Binding Data}"
+                              ItemsSource="{Binding FactorySource}"
                               RowHeight="40"
                               CanUserAddRows="False"
                               IsReadOnly="True"
@@ -305,14 +305,117 @@
                             </DataGrid.CellStyle>
 
                         </DataGrid>
-                        
+                         
                     </Grid>
                     <Button Grid.Row="1" Content="Tạo quy trình mới" Style="{StaticResource CustomButton1}" HorizontalAlignment="Right"
                                  Command="{Binding FilterProductCommand}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tổng hợp bước" Style="{StaticResource TabItem}">
-                <TextBlock Text="Security settings..." Margin="10"/>
+                <Grid Margin="2,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <!--<ColumnDefinition Width="100"/>-->
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Grid.Column="0" AutoGenerateColumns="False" 
+                          ItemsSource="{Binding FactorySource}"
+                          RowHeight="40"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single" Margin="0,0,0,0"
+                          BorderThickness="0" RowHeaderWidth="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <DataGrid.Columns>
+                                <!-- Column 1: ID -->
+                                <DataGridTextColumn Header="ID"  Binding="{Binding ID}" MinWidth="40">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Margin" Value="5"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <!--ProcessName-->
+                                <DataGridTextColumn Header="Tên quy trình" Binding="{Binding ProcessName}" MinWidth="100" Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Margin" Value="20,5,5,5"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="#FFFFFF"/>
+                                    <Setter Property="Foreground" Value="#B5B7C0"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Height" Value="40"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="BorderBrush" Value="Gray"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="5,0,0,0"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+                        </DataGrid>
+                                                
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="140"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Thêm bước" Style="{StaticResource CustomButton1}" HorizontalAlignment="Right"
+                                 Command="{Binding AddStepCommand}"/>
+                        <Button Grid.Column="1" Content="Lưu lại" Style="{StaticResource CustomButton1}" HorizontalAlignment="Right"
+                                 Command="{Binding SaveStepCommand}"/>
+                    </Grid>
+                </Grid>
             </TabItem>
             <TabItem Header="Thêm" Style="{StaticResource TabItem}">
                 <TextBlock Text="More details here..." Margin="10"/>

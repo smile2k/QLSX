@@ -139,7 +139,7 @@ namespace QLSX.Module.Products.ViewModels
 
                 }
             });
-                    }
+        }
 
         private void CreateProduct()
         {
