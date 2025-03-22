@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QLSX.Module.Step.Views
+namespace QLSX.Module.Workflow.Views
 {
     /// <summary>
     /// Interaction logic for StepView.xaml
     /// </summary>
-    public partial class StepView : UserControl
+    public partial class WorkflowView : UserControl
     {
-        public StepView()
+        public WorkflowView()
         {
             InitializeComponent();
         }

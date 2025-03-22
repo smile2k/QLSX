@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.Based.Common", "QLSX.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.Module.Factory", "QLSX.Module.Factory\QLSX.Module.Factory.csproj", "{8C038777-0974-4F6A-B6A1-4BAA6D64498E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.Module.Step", "QLSX.Module.Step\QLSX.Module.Step.csproj", "{0C45B138-AED0-40B2-9947-CED266418412}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSX.Module.Workflow", "QLSX.Module.Step\QLSX.Module.Workflow.csproj", "{0C45B138-AED0-40B2-9947-CED266418412}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

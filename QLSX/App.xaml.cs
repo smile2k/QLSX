@@ -32,7 +32,7 @@ namespace QLSX.MainWindow
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.ProductsView>();
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.EditProductView>();
             containerRegistry.RegisterForNavigation<QLSX.Module.Factory.Views.FactoryView>();
-            containerRegistry.RegisterForNavigation<QLSX.Module.Step.Views.StepView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Workflow.Views.WorkflowView>();
 
 
             // Register EventAggregator.
@@ -49,7 +49,7 @@ namespace QLSX.MainWindow
             ViewModelLocationProvider.Register<QLSX.Module.Products.Views.ProductsView, QLSX.Module.Products.ViewModels.ProductsViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Products.Views.EditProductView, QLSX.Module.Products.ViewModels.EditProductViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Factory.Views.FactoryView, QLSX.Module.Factory.ViewModels.FactoryViewModel>();
-            ViewModelLocationProvider.Register<QLSX.Module.Step.Views.StepView, QLSX.Module.Step.ViewModels.StepViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Workflow.Views.WorkflowView, QLSX.Module.Workflow.ViewModels.WorkflowViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Main.Views.CustomPopup, QLSX.Module.Main.ViewModels.CustomPopupViewModel>();
         }
     }

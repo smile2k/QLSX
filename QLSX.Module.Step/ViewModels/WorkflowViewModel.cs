@@ -1,4 +1,4 @@
-﻿using QLSX.Based.Common.Events;
+﻿//using QLSX.Based.Common.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace QLSX.Module.Step.ViewModels
+namespace QLSX.Module.Workflow.ViewModels
 {
-    public class StepViewModel : BindableBase
+    public class WorkflowViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
@@ -47,7 +47,7 @@ namespace QLSX.Module.Step.ViewModels
         }
 
     
-        public StepViewModel(IRegionManager regionManager, IEventAggregator eventAggregator,
+        public WorkflowViewModel(IRegionManager regionManager, IEventAggregator eventAggregator,
                             IDialogService dialogService) 
         {
             this._regionManager = regionManager;
