@@ -51,6 +51,11 @@ namespace QLSX.MainWindow
             ViewModelLocationProvider.Register<QLSX.Module.Factory.Views.FactoryView, QLSX.Module.Factory.ViewModels.FactoryViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Workflow.Views.WorkflowView, QLSX.Module.Workflow.ViewModels.WorkflowViewModel>();
             ViewModelLocationProvider.Register<QLSX.Module.Main.Views.CustomPopup, QLSX.Module.Main.ViewModels.CustomPopupViewModel>();
+
+            ViewModelLocationProvider.Register<QLSX.Module.Workflow.Views.ProcessView, QLSX.Module.Workflow.ViewModels.ProcessViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Workflow.Views.EditProcessView, QLSX.Module.Workflow.ViewModels.EditProcessViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Workflow.Views.StepView, QLSX.Module.Workflow.ViewModels.StepViewModel>();
+            ViewModelLocationProvider.Register<QLSX.Module.Workflow.Views.EditStepView, QLSX.Module.Workflow.ViewModels.EditStepViewModel>();
         }
     }
 

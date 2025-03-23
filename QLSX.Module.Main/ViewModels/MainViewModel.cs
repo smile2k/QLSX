@@ -140,7 +140,7 @@ namespace QLSX.Module.Main.ViewModels
                 case "Step":
                     {
                         PageHeader = "Quy trình";
-                        _regionManager.RequestNavigate("ContentRegion", "StepView");
+                        _regionManager.RequestNavigate("ContentRegion", "WorkflowView");
                         break;
                     }
 
