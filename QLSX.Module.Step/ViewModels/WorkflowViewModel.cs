@@ -63,6 +63,7 @@ namespace QLSX.Module.Workflow.ViewModels
                 new ProcessData { ID = 5, ProcessName = "Áo sơ mi" },
             };
 
+            this.SelectTabCommand = new DelegateCommand<object>(SelectTab);
             this.EditCommand = new DelegateCommand<object>(EditItem);
             this.DeleteCommand = new DelegateCommand<object>(DeleteItem);
             this.AddStepCommand = new DelegateCommand(AddStep);
@@ -70,10 +71,35 @@ namespace QLSX.Module.Workflow.ViewModels
 
         }
 
+        public ICommand SelectTabCommand { get; }
+
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand AddStepCommand { get; }
         public ICommand SaveStepCommand { get; }
+
+        private void SelectTab(object option)
+        {
+
+            switch (option.ToString())
+            {
+                case "Process":
+                    {
+                        _regionManager.RequestNavigate("WorkflowRegion", "ProcessView");
+                        break;
+                    }
+                case "Step":
+                    {
+                        _regionManager.RequestNavigate("WorkflowRegion", "StepView");
+                        break;
+                    }
+                case "More":
+                    {
+                        break;
+                    }
+
+            }
+        }
 
         private void EditItem(object obj)
         {

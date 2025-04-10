@@ -33,6 +33,10 @@ namespace QLSX.MainWindow
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.EditProductView>();
             containerRegistry.RegisterForNavigation<QLSX.Module.Factory.Views.FactoryView>();
             containerRegistry.RegisterForNavigation<QLSX.Module.Workflow.Views.WorkflowView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Workflow.Views.ProcessView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Workflow.Views.EditProcessView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Workflow.Views.StepView>();
+            containerRegistry.RegisterForNavigation<QLSX.Module.Workflow.Views.EditStepView>();
 
 
             // Register EventAggregator.
