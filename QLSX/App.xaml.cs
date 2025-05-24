@@ -27,6 +27,7 @@ namespace QLSX.MainWindow
             // Register Service.
             containerRegistry.RegisterSingleton<IDataHandlerService, DataHandlerService>();
             containerRegistry.RegisterDialog<CustomPopup, CustomPopupViewModel>();
+            containerRegistry.RegisterSingleton<IDBService,  DBService>();
 
             // Register View for Navigation.
             containerRegistry.RegisterForNavigation<QLSX.Module.Products.Views.ProductsView>();

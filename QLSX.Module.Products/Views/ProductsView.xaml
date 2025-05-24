@@ -1,30 +1,32 @@
-﻿<UserControl x:Class="QLSX.Module.Products.Views.ProductsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:QLSX.Module.Products.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="QLSX.Module.Products.Views.ProductsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:QLSX.Module.Products.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="DataGrid">
             <Setter Property="HorizontalGridLinesBrush" Value="AliceBlue" />
             <Setter Property="VerticalGridLinesBrush" Value="AliceBlue" />
             <Setter Property="Background" Value="#FFFFFF" />
             <Setter Property="Foreground" Value="Black" />
         </Style>
-        
-        <Style TargetType="Button" x:Key="ActionButton">
+
+        <Style x:Key="ActionButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="0"
-                                CornerRadius="5"
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                         </Border>
                         <ControlTemplate.Triggers>
@@ -42,21 +44,21 @@
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="BorderBrush" Value="Gray" />
             <Setter Property="Padding" Value="10,5" />
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="0,0,0,0" />
         </Style>
-        
-        <Style TargetType="Button" x:Key="CustomButton1">
+
+        <Style x:Key="CustomButton1" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1"
-                                CornerRadius="5"
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                         </Border>
                         <ControlTemplate.Triggers>
@@ -76,13 +78,13 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="FontFamily" Value="Poppins"/>
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="29"/>
-            <Setter Property="Margin" Value="0,0,20,0"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontFamily" Value="Poppins" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="29" />
+            <Setter Property="Margin" Value="0,0,20,0" />
         </Style>
-        
+
         <Style x:Key="FilterTextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="#F9FBFF" />
@@ -95,10 +97,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="2" />
                         </Border>
                     </ControlTemplate>
@@ -117,197 +120,273 @@
     </UserControl.Resources>
 
     <Grid>
-        <Border Margin="30,30,30,30" CornerRadius="10" BorderThickness="0" BorderBrush="Black" Background="#FFFFFF">
+        <Border
+            Margin="30,30,30,30"
+            Background="#FFFFFF"
+            BorderBrush="Black"
+            BorderThickness="0"
+            CornerRadius="10">
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="90" />
+                    <RowDefinition />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
-                
-                <!-- Filter , Create-->
+
+                <!--  Filter , Create  -->
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
-                    <!--Filter-->
+                    <!--  Filter  -->
                     <Grid Grid.Row="0" Margin="10,5,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                        <Border
+                            Grid.Column="0"
+                            Width="auto"
+                            Height="30"
+                            Margin="5"
+                            Background="#F9FBFF"
+                            BorderBrush="#B5B7C0"
+                            BorderThickness="1"
+                            CornerRadius="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Mã:" Style="{StaticResource FilterTextBlock}"/>
+                                <TextBlock Style="{StaticResource FilterTextBlock}" Text="Mã:" />
 
-                                <TextBox Grid.Column="1"
-                                         Style="{StaticResource FilterTextBoxStyle}"
-                                         Text="{Binding SkuTxb}">
-                                </TextBox>
-                            </Grid>    
+                                <TextBox
+                                    Grid.Column="1"
+                                    Style="{StaticResource FilterTextBoxStyle}"
+                                    Text="{Binding SkuTxb}" />
+                            </Grid>
                         </Border>
-                        <Border Grid.Column="1" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                        <Border
+                            Grid.Column="1"
+                            Width="auto"
+                            Height="30"
+                            Margin="5"
+                            Background="#F9FBFF"
+                            BorderBrush="#B5B7C0"
+                            BorderThickness="1"
+                            CornerRadius="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Xưởng:"  Style="{StaticResource FilterTextBlock}"/>
-                                <TextBox Grid.Column="1"
-                                         Style="{StaticResource FilterTextBoxStyle}"
-                                         Text="{Binding FactoryTxb}">
-                                </TextBox>
-                            </Grid>    
+                                <TextBlock Style="{StaticResource FilterTextBlock}" Text="Xưởng:" />
+                                <TextBox
+                                    Grid.Column="1"
+                                    Style="{StaticResource FilterTextBoxStyle}"
+                                    Text="{Binding FactoryTxb}" />
+                            </Grid>
                         </Border>
-                        <Border Grid.Column="2" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                        <Border
+                            Grid.Column="2"
+                            Width="auto"
+                            Height="30"
+                            Margin="5"
+                            Background="#F9FBFF"
+                            BorderBrush="#B5B7C0"
+                            BorderThickness="1"
+                            CornerRadius="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Bước:"  Style="{StaticResource FilterTextBlock}"/>
-                                <TextBox Grid.Column="1"
-                                         Style="{StaticResource FilterTextBoxStyle}"
-                                         Text="{Binding StepTxb}">
-                                </TextBox>
-                            </Grid>     
+                                <TextBlock Style="{StaticResource FilterTextBlock}" Text="Bước:" />
+                                <TextBox
+                                    Grid.Column="1"
+                                    Style="{StaticResource FilterTextBoxStyle}"
+                                    Text="{Binding StepTxb}" />
+                            </Grid>
                         </Border>
-                        <Border Grid.Column="3" CornerRadius="5" Margin="5" Width="auto" Height="30" BorderThickness="1" BorderBrush="#B5B7C0" Background="#F9FBFF">
+                        <Border
+                            Grid.Column="3"
+                            Width="auto"
+                            Height="30"
+                            Margin="5"
+                            Background="#F9FBFF"
+                            BorderBrush="#B5B7C0"
+                            BorderThickness="1"
+                            CornerRadius="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Trạng thái:"  Style="{StaticResource FilterTextBlock}"/>
-                                <TextBox Grid.Column="1"
-                                         Style="{StaticResource FilterTextBoxStyle}"
-                                         Text="{Binding StatusTxb}">
-                                </TextBox>
-                            </Grid>      
+                                <TextBlock Style="{StaticResource FilterTextBlock}" Text="Trạng thái:" />
+                                <TextBox
+                                    Grid.Column="1"
+                                    Style="{StaticResource FilterTextBoxStyle}"
+                                    Text="{Binding StatusTxb}" />
+                            </Grid>
                         </Border>
-                         <Button Grid.Column="4" Content="Lọc" Style="{StaticResource CustomButton1}" HorizontalAlignment="Right"
-                                 Command="{Binding FilterProductCommand}"/>
+                        <Button
+                            Grid.Column="4"
+                            HorizontalAlignment="Right"
+                            Command="{Binding FilterProductCommand}"
+                            Content="Lọc"
+                            Style="{StaticResource CustomButton1}" />
 
                     </Grid>
-                    <!--Create-->
+                    <!--  Create  -->
                     <Grid Grid.Row="1">
-                        <Button Content="Tạo mới" Style="{StaticResource CustomButton1}"  
-                                HorizontalAlignment="Right"
-                                Command="{Binding CreateProductCommand}"/>
+                        <Button
+                            HorizontalAlignment="Right"
+                            Command="{Binding CreateProductCommand}"
+                            Content="Tạo mới"
+                            Style="{StaticResource CustomButton1}" />
                     </Grid>
                 </Grid>
-                <!-- Product Table-->
+                <!--  Product Table  -->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
 
-                        <DataGrid AutoGenerateColumns="False" 
-                              ItemsSource="{Binding Data}"
-                              RowHeight="40"
-                              CanUserAddRows="False"
-                              IsReadOnly="True"
-                              SelectionMode="Single" Margin="10,0,10,0"
-                              BorderThickness="0" RowHeaderWidth="0"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid
+                            Margin="10,0,10,0"
+                            AutoGenerateColumns="False"
+                            BorderThickness="0"
+                            CanUserAddRows="False"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding Products}"
+                            RowHeaderWidth="0"
+                            RowHeight="40"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            SelectionMode="Single">
                             <DataGrid.Columns>
-                                <!-- Column 1: ID -->
-                                <DataGridTextColumn Header="ID"  Binding="{Binding Id}" MinWidth="40">
+                                <!--  Column 1: ID  -->
+                                <DataGridTextColumn
+                                    MinWidth="40"
+                                    Binding="{Binding Id}"
+                                    Header="ID">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <!-- Column 2: Sku -->
-                                <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding Sku}" MinWidth="50">
+                                <!--  Column 2: Sku  -->
+                                <DataGridTextColumn
+                                    MinWidth="50"
+                                    Binding="{Binding Sku}"
+                                    Header="Mã sản phẩm">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <!-- Column 3: Name -->
-                                <DataGridTextColumn Header="Tên" Binding="{Binding ProductName}" MinWidth="50" Width="*">
+                                <!--  Column 3: Name  -->
+                                <DataGridTextColumn
+                                    Width="*"
+                                    MinWidth="50"
+                                    Binding="{Binding Name}"
+                                    Header="Tên">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <!--Factory-->
-                                <DataGridTextColumn Header="Xưởng" Binding="{Binding Factory}" MinWidth="100" MaxWidth="200">
+                                <!--  Factory  -->
+                                <DataGridTextColumn
+                                    MinWidth="100"
+                                    MaxWidth="200"
+                                    Binding="{Binding Factory}"
+                                    Header="Xưởng">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <!--1-->
-                                <DataGridTextColumn Header="Số lượng dự kiến" Binding="{Binding Factory}" MinWidth="100" MaxWidth="200">
+                                <!--  1  -->
+                                <DataGridTextColumn
+                                    MinWidth="100"
+                                    MaxWidth="200"
+                                    Binding="{Binding Factory}"
+                                    Header="Số lượng dự kiến">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Số lượng cắt" Binding="{Binding Factory}" MinWidth="100" MaxWidth="200">
+                                <DataGridTextColumn
+                                    MinWidth="100"
+                                    MaxWidth="200"
+                                    Binding="{Binding Factory}"
+                                    Header="Số lượng cắt">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Bước" Binding="{Binding Id}" MinWidth="100" MaxWidth="200">
+                                <DataGridTextColumn
+                                    MinWidth="100"
+                                    MaxWidth="200"
+                                    Binding="{Binding Id}"
+                                    Header="Bước">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
 
 
-                                <!--Status-->
-                                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" MinWidth="100" MaxWidth="150">
+                                <!--  Status  -->
+                                <DataGridTextColumn
+                                    MinWidth="100"
+                                    MaxWidth="150"
+                                    Binding="{Binding Status}"
+                                    Header="Trạng thái">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Left" />
-                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                            <Setter Property="Margin" Value="5"/>
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="5" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -316,149 +395,155 @@
 
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Background" Value="#FFFFFF"/>
-                                    <Setter Property="Foreground" Value="#B5B7C0"/>
-                                    <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Height" Value="40"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                    <Setter Property="Margin" Value="5,0,0,0"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Background" Value="#FFFFFF" />
+                                    <Setter Property="Foreground" Value="#B5B7C0" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="Height" Value="40" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="Margin" Value="5,0,0,0" />
+                                    <Setter Property="BorderThickness" Value="0" />
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="Background" Value="LightBlue" />
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                            <Setter Property="Background" Value="#FFFFFF" />
                                         </Trigger>
                                     </Style.Triggers>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Height" Value="40" />
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FFFFFF"/>
-                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Background" Value="#FFFFFF" />
+                                            <Setter Property="Foreground" Value="Black" />
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="Background" Value="LightBlue" />
                                         </Trigger>
                                     </Style.Triggers>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                    <Setter Property="BorderBrush" Value="Gray"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="Padding" Value="5,0,0,0"/>
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="Gray" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="Padding" Value="5,0,0,0" />
                                 </Style>
                             </DataGrid.CellStyle>
                         </DataGrid>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <DataGrid AutoGenerateColumns="False" 
-                              ItemsSource="{Binding Data}"
-                              RowHeight="40"
-                              CanUserAddRows="False"
-                              IsReadOnly="True"
-                              SelectionMode="Single" Margin="0,0,20,0"
-                              BorderThickness="0" RowHeaderWidth="0"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid
+                            Margin="0,0,20,0"
+                            AutoGenerateColumns="False"
+                            BorderThickness="0"
+                            CanUserAddRows="False"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding Products}"
+                            RowHeaderWidth="0"
+                            RowHeight="40"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            SelectionMode="Single">
                             <DataGrid.Columns>
-                                 <DataGridTemplateColumn Header="Thao tác" Width="80" MaxWidth="80" MinWidth="80">
+                                <DataGridTemplateColumn
+                                    Width="80"
+                                    MinWidth="80"
+                                    MaxWidth="80"
+                                    Header="Thao tác">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <!-- Edit Button -->
+                                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                <!--  Edit Button  -->
                                                 <Button
-                                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                                        CommandParameter="{Binding}" 
-                                                        Style="{StaticResource ActionButton}">
+                                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource ActionButton}">
                                                     <Button.Content>
                                                         <Viewbox Width="24" Height="24">
-                                                            <Path Data="M42.948,12.532 L10.489,44.99 L3,47 L5.009,39.511 L37.468,7.052 M5.191,39.328 L10.672,44.809 L3.474,46.526 M45.749,11.134 c-0.005,0.004,0.824-0.825,0.824-0.825 c1.901-1.901,1.901-4.983,0.002-6.883 c-1.903-1.902-4.984-1.9-6.885,0 c0,0-0.83,0.83-0.825,0.825L45.749,11.134z" 
-                                                                  Fill="White" 
-                                                                  Stroke="Black" 
-                                                                  StrokeLineJoin="Round" 
-                                                                  StrokeMiterLimit="10"/>
+                                                            <Path
+                                                                Data="M42.948,12.532 L10.489,44.99 L3,47 L5.009,39.511 L37.468,7.052 M5.191,39.328 L10.672,44.809 L3.474,46.526 M45.749,11.134 c-0.005,0.004,0.824-0.825,0.824-0.825 c1.901-1.901,1.901-4.983,0.002-6.883 c-1.903-1.902-4.984-1.9-6.885,0 c0,0-0.83,0.83-0.825,0.825L45.749,11.134z"
+                                                                Fill="White"
+                                                                Stroke="Black"
+                                                                StrokeLineJoin="Round"
+                                                                StrokeMiterLimit="10" />
                                                         </Viewbox>
-                                                    </Button.Content>    
+                                                    </Button.Content>
                                                 </Button>
 
-                                                <!-- Delete Button -->
-                                                <Button 
-                                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                                        CommandParameter="{Binding}" 
-                                                        Style="{StaticResource ActionButton}">
+                                                <!--  Delete Button  -->
+                                                <Button
+                                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource ActionButton}">
                                                     <Button.Content>
                                                         <Viewbox Width="24" Height="24">
-                                                            <Path Data="M19,6V3c0-1.104,0.896-2,2-2h8c1.104,0,2,0.896,2,2v3 M40,6l-3.693,41.426C36.229,48.299,35.469,49,34.608,49H15.391c-0.86,0-1.621-0.701-1.699-1.574L10,6 M8,6H42
-                                                                        M25,11V44
-                                                                        M31,11V44
-                                                                        M19,11V44" 
-                                                                  Fill="White" 
-                                                                  Stroke="Black" 
-                                                                  StrokeLineJoin="Round" 
-                                                                  StrokeMiterLimit="10"/>
+                                                            <Path
+                                                                Data="M19,6V3c0-1.104,0.896-2,2-2h8c1.104,0,2,0.896,2,2v3 M40,6l-3.693,41.426C36.229,48.299,35.469,49,34.608,49H15.391c-0.86,0-1.621-0.701-1.699-1.574L10,6 M8,6H42                                                                         M25,11V44                                                                         M31,11V44                                                                         M19,11V44"
+                                                                Fill="White"
+                                                                Stroke="Black"
+                                                                StrokeLineJoin="Round"
+                                                                StrokeMiterLimit="10" />
                                                         </Viewbox>
-                                                    </Button.Content> 
+                                                    </Button.Content>
                                                 </Button>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
 
-                                
+
                             </DataGrid.Columns>
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Background" Value="#FFFFFF"/>
-                                    <Setter Property="Foreground" Value="#B5B7C0"/>
-                                    <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Height" Value="40"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                    <Setter Property="Margin" Value="5,0,0,0"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Background" Value="#FFFFFF" />
+                                    <Setter Property="Foreground" Value="#B5B7C0" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="Height" Value="40" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="Margin" Value="5,0,0,0" />
+                                    <Setter Property="BorderThickness" Value="0" />
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Background" Value="White" />
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                            <Setter Property="Background" Value="#FFFFFF" />
                                         </Trigger>
                                     </Style.Triggers>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Height" Value="40" />
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FFFFFF"/>
-                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Background" Value="#FFFFFF" />
+                                            <Setter Property="Foreground" Value="Black" />
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Background" Value="White" />
                                         </Trigger>
                                     </Style.Triggers>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                    <Setter Property="BorderBrush" Value="Gray"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="Padding" Value="5,0,0,0"/>
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="Gray" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="Padding" Value="5,0,0,0" />
                                 </Style>
                             </DataGrid.CellStyle>
 

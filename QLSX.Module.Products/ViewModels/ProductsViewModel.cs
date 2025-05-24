@@ -1,4 +1,8 @@
-﻿using QLSX.Based.Common.Events;
+﻿using Microsoft.EntityFrameworkCore;
+using QLSX.Based.Common.Events;
+using QLSX.Based.Common.Models;
+using QLSX.Services.Data;
+using QLSX.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,12 +19,15 @@ namespace QLSX.Module.Products.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
         private readonly IDialogService _dialogService;
+        private readonly IDBService _dbService;
 
-        private ObservableCollection<Item> _data;
-        public ObservableCollection<Item> Data
+        private readonly AppDbContext _context = new AppDbContext();
+
+        private ObservableCollection<Product> _products;
+        public ObservableCollection<Product> Products
         {
-            get { return _data; }
-            set { SetProperty(ref _data, value); }
+            get { return _products; }
+            set { SetProperty(ref _products, value); }
         }
 
         private string _skuTxb ="";
@@ -52,26 +59,19 @@ namespace QLSX.Module.Products.ViewModels
         }
 
         public ProductsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator,
-                                IDialogService dialogService)
+                                IDialogService dialogService, IDBService dbService)
         {
             this._regionManager = regionManager;
             this._eventAggregator = eventAggregator;
             this._dialogService = dialogService;
-
-            Data = new ObservableCollection<Item>
-            {
-                new Item { Id = 1, Sku = "AH123", ProductName = "Áo thu đông", Factory = "Thanh trì", Status = "Đã xong" },
-                new Item { Id = 2, Sku = "AH123", ProductName = "Áo thu đông", Factory = "Chương Mỹ", Status = "Đã xong"  },
-                new Item { Id = 3, Sku = "AK456", ProductName = "Áo khoác", Factory = "Thanh Trì", Status = "Đang sản xuất" },
-                new Item { Id = 4, Sku = "BH190", ProductName = "Áo cộc", Factory = "", Status = "Chờ xếp xưởng" },
-                new Item { Id = 5, Sku = "HO999", ProductName = "Áo len", Factory = "Yên Xá", Status = "Đã xong" },
-            };
+            this._dbService = dbService;
 
             this.EditCommand = new DelegateCommand<object>(EditItem);
             this.DeleteCommand = new DelegateCommand<object>(DeleteItem);
             this.CreateProductCommand = new DelegateCommand(CreateProduct);
             this.FilterProductCommand = new DelegateCommand(FilterProduct);
 
+            InitProductDataGrid();
         }
         public class Item
         {
@@ -132,19 +132,25 @@ namespace QLSX.Module.Products.ViewModels
             {
                 if (result.Result == ButtonResult.OK)
                 {
-                    if (obj is Item item)
+                    if (obj is Product item)
                     {
-                        Data.Remove(item);
+                        Products.Remove(item);
                     }
 
                 }
             });
         }
 
+        private async void InitProductDataGrid()
+        {
+            Products = await _dbService.GetAllProductsAsync();
+        }
+
         private void CreateProduct()
         {
 
         }
+
         private void FilterProduct()
         {
 
